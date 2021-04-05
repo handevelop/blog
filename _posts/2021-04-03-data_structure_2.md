@@ -4,6 +4,7 @@ excerpt: "ArrayList 와 LinkedList 차이 (feat.Array)"
 
 categories:
   - Java
+  - CS
 tags:
   - 자료구조
 last_modified_at: 2021-04-03T13:06:00-05:00
