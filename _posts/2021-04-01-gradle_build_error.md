@@ -3,6 +3,7 @@ title:  "git clone 후 인텔리J에서 Gradle 프로젝트 작동안될때"
 excerpt: "Gradle"
 
 categories:
+  - Java
   - Gradle
 tags:
   - Java

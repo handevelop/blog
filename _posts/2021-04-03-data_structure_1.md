@@ -4,8 +4,9 @@ excerpt: "immutable"
 
 categories:
   - Java
+  - CS
 tags:
-  - String
+  - 자료구조
 last_modified_at: 2021-04-04T16:06:00-05:00
 ---
 

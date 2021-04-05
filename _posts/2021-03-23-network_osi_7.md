@@ -3,9 +3,10 @@ title:  "Network OSI 7"
 excerpt: ""
 
 categories:
-  - Blog
+  - CS
+  - network
 tags:
-  - Blog
+  - network
 last_modified_at: 2021-03-22T017:45:00-05:00
 ---
 
