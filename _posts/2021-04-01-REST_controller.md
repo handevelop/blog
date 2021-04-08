@@ -9,7 +9,6 @@ tags:
 last_modified_at: 2021-04-01T00:00:00-05:00
 ---
 
-SpringBoot/JPA 스터디 내용 정리1
 
 # @Controller VS @RestController
 
