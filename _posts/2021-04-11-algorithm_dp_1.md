@@ -1,6 +1,6 @@
 ---
 title:  "다이나믹 프로그래밍"
-excerpt: "DP란 무엇일까?"
+excerpt: "DP 1번 문제"
 
 categories:
   - Algorithm
