@@ -54,29 +54,29 @@ m <= 20
 
 dp[i][j] = dp[i][j] + max(dp[i-1][j-1], dp[i][j-1], dp[i+1][j-1])
 
-매번 테이블에 접근 할 때 배의 범위를 벗어나지 않는지 체크해야 한다.
+매번 테이블에 접근 할 때 배열의 범위를 벗어나지 않는지 체크해야 한다.
 
     int solution(int[][] arr) {
         int[][] dp = arr;
-        int n = arr[0].length; // 열 (column)
-        int m = arr.length; // 행 (row)
-        log.info("열 : " + n + "행 : " + m);
+        int n = arr[0].length; // 행
+        int m = arr.length; // 열
+        log.info ("행 : " + n + "열 : " + m);
 
-        for(int i = 0; i < m; i++) {
-            for(int j =  1; j < n; j++ ) {
-                log.info("dp : " + dp[i][j]);
+        for (int j = 1; j < m; j++) {
+            for (int i = 0; i < n; i++) {
+                log.info ("dp : " + dp[i][j]);
                 int leftUp = 0;
                 int left = 0;
                 int leftDown = 0;
                 // 왼쪽 위에서 오는 경우
-                if(i == 0) {
+                if (i == 0) {
                     leftUp = 0;
                 } else {
                     leftUp = dp[i - 1][j - 1];
                 }
 
                 // 왼쪽 아래에서 오는 경우
-                if(i == (m - 1)) {
+                if (i == (m - 1)) {
                     leftDown = 0;
                 } else {
                     leftDown = dp[i + 1][j - 1];
@@ -84,14 +84,12 @@ dp[i][j] = dp[i][j] + max(dp[i-1][j-1], dp[i][j-1], dp[i+1][j-1])
 
                 // 왼쪽에서 오는 경우
                 left = dp[i][j - 1];
-                dp[i][j] = dp[i][j] + Math.max(leftUp, Math.max(left, leftDown));
+                dp[i][j] = dp[i][j] + Math.max (leftUp, Math.max (left, leftDown));
             }
         }
         int max = 0;
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < n; j++) {
-                max = Math.max(max, dp[i][j]);
-            }
+        for (int i = 0; i < n; i++) {
+            max = Math.max (max, dp[i][m - 1]);
         }
         return max;
     }
