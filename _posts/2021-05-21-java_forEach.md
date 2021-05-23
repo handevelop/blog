@@ -1,6 +1,6 @@
 ---
 title:  "JAVA forEach 차이"
-excerpt: "다시 돌아보기"
+excerpt: "자바8 이전과 이후"
 
 categories:
   - Java
@@ -11,10 +11,6 @@ last_modified_at: 2021-05-21T08:22:00-05:00
 ---
 
 
-
-당황하면 아는것도 기억이 바로바로 안떠오른다.
-긴장 탓이 아니라 내 기초실력이 그만큼 모자른것이다.
-기초부터 다시한번 돌아보는 시간을 가지면서 복기를 해보자.
 
 # for each(enhanced for loop), Collection.forEach(), Collection.stream().forEach() 차이
 
