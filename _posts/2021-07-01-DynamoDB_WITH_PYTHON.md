@@ -4,14 +4,18 @@ excerpt: ""
 
 categories:
   - DynamoDB
+  - python
+  - boto3
 last_modified_at: 2020-07-01T08:06:00-05:00
 ---
 
 
 
-delete_item 은 PK 기준으로 삭제가 가능하다.
+# delete 소스코드
 
-유니크한 hk 를 갖고 있는 data set 에 대해서 bulk delete 코드는 다음과 같다.
+- delete_item 은 PK 기준으로 삭제가 가능하다.
+
+- 유니크한 hk 를 갖고 있는 data set 에 대해서 bulk delete 코드는 다음과 같다.
 
 
 ```python
@@ -79,11 +83,11 @@ log.info("==============================================================")
 ```
 
 
-insert 관련 파이썬 소스
+# insert 소스코드
 
 
 
-모듈 insert 소스 
+- 모듈 insert 소스 
 
 
 ```python
@@ -208,10 +212,7 @@ except Exception as ex:
 
 
 
-
-
-
-템플릿 insert 소스
+- 템플릿 insert 소스
 
 
 ```python

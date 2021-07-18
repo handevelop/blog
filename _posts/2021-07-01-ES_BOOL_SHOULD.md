@@ -1,19 +1,20 @@
 ---
-title:  "ES BOOL SHOULD"
+title:  "elasticsearch bool should 쿼리 스터디"
 excerpt: ""
 
 categories:
-  - ES
+  - elasticsearch
   - 스터디
-last_modified_at: 2020-07-01T08:06:00-05:00
+last_modified_at: 2020-07-18T08:06:00-05:00
 ---
 
 
-원하는 결과
+# 원하는 결과
 
 
-아래 terms 쿼리와 같이 app_dvs_cd 라는 필드에 여러가지 조건을 달아서 조회하고 싶다.
+- 아래 terms 쿼리와 같이 app_dvs_cd 라는 필드에 여러가지 조건을 달아서 조회하고 싶다.
 
+```javascript
 GET /fc_fc/_search
 { 
   "query": {
@@ -25,18 +26,17 @@ GET /fc_fc/_search
     }
  }, "size" : 100
 }
-
+```
 ==> app_dvs_cd 가 ALL 이거나 ELLT 인 데이터가 조회.
 
 
 
 
 
-bool should 쿼리를 이용하여 쿼리
+# bool should 쿼리를 이용하여 쿼리
 
 
-DSL
-
+```javascript
 GET /fc_fc/_search
 { 
   "query": {
@@ -84,18 +84,21 @@ GET /fc_fc/_search
     }
  }, "size" : 100
 }
+```
 ==> app_dvs_cd 가 ALL 이거나 ELLT 인 데이터가 조회
 
 
 
-JAVA 소스
+# JAVA 소스
 
-기존 BoolQueryBuilder에 sub BoolQueryBuilder를 add() 해준다.
+- 기존 BoolQueryBuilder에 sub BoolQueryBuilder를 add() 해준다.
 
+```java
 BoolQueryBuilder subQuery = new BoolQueryBuilder();
  
 subQuery.should ().add (QueryBuilders.matchQuery (AppVersionConstant.APP_ES_APP_DVS_CD, AppVersionConstant.APP_DVS_CD_ALL).operator (Operator.OR));
 subQuery.should ().add (QueryBuilders.matchQuery (AppVersionConstant.APP_ES_APP_DVS_CD, appDvsCd).operator (Operator.OR));
  
 query.must ().add (subQuery);
+```
 ==> app_dvs_cd 가 ALL 이거나 입력받은 appDvsCd 인 데이터가 조회.
