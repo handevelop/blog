@@ -27,7 +27,7 @@ last_modified_at: 2020-07-24T08:06:00-05:00
 
 
 
-# filter 적용 방법1 - config 파일
+# 필터 적용 방법1 - config 방식
 
 
 ```java
@@ -53,7 +53,7 @@ public class FilterConfig {
 ```
 
 
-# filter 적용 방법2 - yml 파일
+# 필터 적용 방법2 - yml 방식
 
 
 ```java
@@ -78,5 +78,64 @@ spring:
             - AddRequestHeader=s-req, s-req-val2
             - AddResponseHeader=s-res, s-res-val2
 
+
+```
+
+
+# 커스텀 필터 적용 - yml 방식
+
+```java
+public class CustomFilter extends AbstractGatewayFilterFactory<CustomFilter.Config> {
+
+    public CustomFilter() {
+        super(Config.class);
+    }
+
+    @Override
+    public GatewayFilter apply(Config config) {
+        // 커스텀 프리필터
+        return (exchange, chain) -> {
+            ServerHttpRequest serverRequest = exchange.getRequest();
+            ServerHttpResponse serverResponse = exchange.getResponse();
+
+            log.info("커스텀 프리필터 : 리퀘스트 ID -> {} ", serverRequest.getId());
+
+            // 커스텀 포스트필터
+            return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+                log.info("커스텀 포스트필터 : 리스폰스 상태코드 -> {}", serverResponse.getStatusCode());
+            }));
+        };
+    }
+
+    public static class Config {
+
+    }
+}
+```
+
+yml 수정
+```java
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: first-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/first-service/**
+          filters:
+#            - AddRequestHeader=f-req, f-req-val2
+#            - AddResponseHeader=f-res, f-res-val2
+            - CustomFilter
+        - id: second-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/second-service/**
+          filters:
+#            - AddRequestHeader=s-req, s-req-val2
+#            - AddResponseHeader=s-res, s-res-val2
+            - CustomFilter
 
 ```
