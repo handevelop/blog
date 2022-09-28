@@ -1,0 +1,43 @@
+---
+layout: archive
+---
+
+{{ content }}
+
+{% assign years_max = 0 %}
+{% for year in site.years %}
+  {% if year[1].size > years_max %}
+    {% assign years_max = year[1].size %}
+  {% endif %}
+{% endfor %}
+
+<ul class="taxonomy__index">
+  {% for i in (1..years_max) reversed %}
+    {% for year in site.years %}
+      {% if year[1].size == i %}
+        <li>
+          <a href="#{{ year[0] | slugify }}">
+            <strong>{{ year[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+</ul>
+
+{% assign entries_layout = page.entries_layout | default: 'list' %}
+{% for i in (1..years_max) reversed %}
+  {% for year in site.years %}
+    {% if year[1].size == i %}
+      <section id="{{ year[0] | slugify | downcase }}" class="taxonomy__section">
+        <h2 class="archive__subtitle">{{ year[0] }}</h2>
+        <div class="entries-{{ entries_layout }}">
+          {% for post in year.last %}
+            {% include archive-single.html type=entries_layout %}
+          {% endfor %}
+        </div>
+        <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+      </section>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
