@@ -62,6 +62,7 @@ face에 해당하는 의상이 crow_mask, blue_sunglasses, smoky_makeup이므로
 - 주어진 `clothes` 의 각 배열의 두번째 요소를 Key 로, 그 개수를 Value 로 된 해시맵을 만든다.
 - 위에서 만든 해시맵의 keySet 을 가져와 각 value + 1 을 곱해서 마지막에 1 을 빼준 값을 반환한다.
 - 소스 코드
+
 ```java
 import java.util.*;
 

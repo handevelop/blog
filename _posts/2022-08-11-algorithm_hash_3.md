@@ -52,6 +52,7 @@ phone_book	                        return
 - 주어진 `phone_book` 를 한바퀴 돌면서 `map` 에 `phone_book` 의 요소의 subString 들이 있는지 2중 for loop 으로 확인한다.
 - `map` 에 키가 있으면 false 를 반환한다.
 - 소스 코드
+
 ```java
 import java.util.Arrays;
 import java.util.*;
